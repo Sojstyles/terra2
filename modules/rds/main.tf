@@ -11,7 +11,7 @@ resource "aws_security_group" "this" {
   name   = "${var.env_code}-rds"
   vpc_id = var.vpc_id
 
-  ingress = {
+  ingress {
     from_port       = "3306"
     to_port         = "3306"
     protocol        = "tcp"
@@ -28,7 +28,7 @@ resource "aws_db_instance" "this" {
   allocated_storage       = 10
   engine                  = "mysql"
   instance_class          = "db.t3.micro"
-  name                    = "mydb"
+  db_name                 = "mydb"
   username                = "admin"
   password                = var.rds_password
   multi_az                = true

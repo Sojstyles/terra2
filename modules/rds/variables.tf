@@ -2,7 +2,7 @@ variable "subnet_ids" {
 
 }
 
-## variable "vnc_code" {}
+variable "env_code" {}
 
 variable "source_security_group" {
 
