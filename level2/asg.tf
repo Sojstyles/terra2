@@ -13,15 +13,15 @@ module "private_sg" {
   ]
   number_of_computed_ingress_with_source_security_group_id = 1
 
-  egress_cidr_blocks = [
-    {
-      from_port   = 0
-      to_port     = 65535
-      protocol    = "tcp"
-      description = "http to ELB"
-      cidr_blocks = "0.0.0.0/0"
-    }
-  ]
+  # egress_cidr_blocks = [
+  #   {
+  #     from_port   = 0
+  #     to_port     = 65535
+  #     protocol    = "tcp"
+  #     description = "http to ELB"
+  #     cidr_blocks = "0.0.0.0/0"
+  #   }
+  # ]
 
 }
 
@@ -53,7 +53,6 @@ module "autoscaling" {
   health_check_grace_period = 400
   health_check_type         = "EC2"
   vpc_zone_identifier       = data.terraform_remote_state.level1.outputs.private_subnet_id
-  target_group_arns         = module.elb.target_group_arns
   force_delete              = true
 
   launch_template_name        = var.env_code

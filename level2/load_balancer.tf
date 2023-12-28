@@ -28,15 +28,15 @@ module "external_sg" {
   ]
 
 
-  egress_cidr_blocks = [
-    {
-      from_port   = 0
-      to_port     = 65535
-      protocol    = "tcp"
-      description = "https to ELB"
-      cidr_blocks = "0.0.0.0/0"
-    }
-  ]
+  # egress_cidr_blocks = [
+  #   {
+  #     from_port   = 0
+  #     to_port     = 65535
+  #     protocol    = "tcp"
+  #     description = "https to ELB"
+  #     cidr_blocks = "0.0.0.0/0"
+  #   }
+  # ]
 
 }
 
@@ -50,7 +50,7 @@ module "elb" {
   vpc_id          = data.terraform_remote_state.level1.outputs.vpc_id
   internal        = false
   subnets         = data.terraform_remote_state.level1.outputs.public_subnets_id
-  security_groups = [module.external_sg.security_groups_id]
+  security_groups = [module.external_sg.security_group_id]
 
   target_groups = [
     {
@@ -94,7 +94,7 @@ module "dns" {
     {
       name    = "www"
       type    = "CNAME"
-      records = [module.elb.lb_dns_name]
+      records = module.elb.lb_dns_name
       ttl     = 3600
     }
   ]
