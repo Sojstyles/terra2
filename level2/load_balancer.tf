@@ -94,7 +94,7 @@ module "dns" {
     {
       name    = "www"
       type    = "CNAME"
-      records = module.elb.lb_dns_name
+      records = [module.elb.lb_dns_name]
       ttl     = 3600
     }
   ]
