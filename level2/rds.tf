@@ -13,7 +13,7 @@ module "rds_sg" {
   ]
   number_of_computed_ingress_with_source_security_group_id = 1
 
-  egress_cidr_blocks = [
+  egress_with_cidr_blocks = [
     {
       from_port   = 0
       to_port     = 65535

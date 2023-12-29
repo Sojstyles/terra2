@@ -28,7 +28,7 @@ module "external_sg" {
   ]
 
 
-  egress_cidr_blocks = [
+  egress_with_cidr_blocks = [
     {
       from_port   = 0
       to_port     = 65535
