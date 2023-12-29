@@ -58,7 +58,7 @@ module "autoscaling" {
   launch_template_name        = var.env_code
   launch_template_description = "Launch template example"
   update_default_version      = true
-  launch_template_version     = "$latest"
+  launch_template_version     = "$Latest"
 
   image_id        = data.aws_ami.amazonlinux.id
   instance_type   = "t2.micro"

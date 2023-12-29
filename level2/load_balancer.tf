@@ -8,6 +8,8 @@ module "acm" {
   domain_name = "www.techstellar.link"
   zone_id     = data.aws_route53_zone.main.zone_id
 
+  validation_method = "DNS"
+
   wait_for_validation = true
 }
 
@@ -41,15 +43,15 @@ module "external_sg" {
 }
 
 module "elb" {
-  source = "terraform-aws-modules/alb/aws"
-
-  name = var.env_code
+  source  = "terraform-aws-modules/alb/aws"
+  version = "8.4.0"
+  name    = var.env_code
 
   load_balancer_type = "application"
 
   vpc_id          = data.terraform_remote_state.level1.outputs.vpc_id
   internal        = false
-  subnets         = data.terraform_remote_state.level1.outputs.public_subnets_id
+  subnets         = data.terraform_remote_state.level1.outputs.public_subnet_id
   security_groups = [module.external_sg.security_group_id]
 
   target_groups = [
