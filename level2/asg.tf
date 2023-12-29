@@ -59,6 +59,7 @@ module "autoscaling" {
   launch_template_description = "Launch template example"
   update_default_version      = true
   launch_template_version     = "$Latest"
+  target_group_arns           = module.elb.target_group_arns
 
   image_id        = data.aws_ami.amazonlinux.id
   instance_type   = "t2.micro"

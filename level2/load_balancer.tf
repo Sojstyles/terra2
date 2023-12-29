@@ -74,7 +74,7 @@ module "elb" {
       }
     }
   ]
-  target_group_arns = module.elb.target_group_arns
+
 
   https_listeners = [
     {
